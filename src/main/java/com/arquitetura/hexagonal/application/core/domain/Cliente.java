@@ -6,13 +6,13 @@ public class Cliente {
     private String nome;
     private Endereco endereco;
     private String cpf;
-    private boolean cpfValido;
+    private Boolean cpfValido;
 
     public Cliente() {
         this.cpfValido = false;
     }
 
-    public Cliente(String id, String nome, Endereco endereco, String cpf, boolean cpfValido) {
+    public Cliente(String id, String nome, Endereco endereco, String cpf, Boolean cpfValido) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
@@ -52,11 +52,11 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public boolean isCpfValido() {
+    public Boolean isCpfValido() {
         return cpfValido;
     }
 
-    public void setCpfValido(boolean cpfValido) {
+    public void setCpfValido(Boolean cpfValido) {
         this.cpfValido = cpfValido;
     }
 }
