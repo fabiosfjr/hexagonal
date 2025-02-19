@@ -1,4 +1,4 @@
-package com.arquitetura.hexagonal.adapters;
+package com.arquitetura.hexagonal.adapters.out;
 
 import com.arquitetura.hexagonal.adapters.out.client.BuscarEnderecoPeloCepClient;
 import com.arquitetura.hexagonal.adapters.out.client.mapper.EnderecoResponseMapper;
