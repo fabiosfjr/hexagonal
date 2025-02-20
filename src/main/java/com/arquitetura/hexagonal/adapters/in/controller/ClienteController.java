@@ -6,6 +6,7 @@ import com.arquitetura.hexagonal.adapters.in.controller.response.ClienteResponse
 import com.arquitetura.hexagonal.application.core.domain.Cliente;
 import com.arquitetura.hexagonal.application.ports.in.AtualizarClienteInputPort;
 import com.arquitetura.hexagonal.application.ports.in.BuscarClientePeloIdInputPort;
+import com.arquitetura.hexagonal.application.ports.in.ExluirClientePeloIdInputPort;
 import com.arquitetura.hexagonal.application.ports.in.InserirClienteInputPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,9 @@ public class ClienteController {
     @Autowired
     private AtualizarClienteInputPort atualizarClienteInputPort;
 
+    @Autowired
+    private ExluirClientePeloIdInputPort exluirClientePeloIdInputPort;
+
     @PostMapping
     public ResponseEntity<Void> inserir(@Valid @RequestBody ClienteRequest clienteRequest) {
         var cliente = clienteMapper.toCliente(clienteRequest);
@@ -51,4 +55,9 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable final String id) {
+        exluirClientePeloIdInputPort.excluir(id);
+        return ResponseEntity.noContent().build();
+    }
 }

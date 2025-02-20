@@ -3,7 +3,7 @@ package com.arquitetura.hexagonal.application.core.usecase;
 import com.arquitetura.hexagonal.application.ports.in.BuscarClientePeloIdInputPort;
 import com.arquitetura.hexagonal.application.ports.out.ExcluirClientePeloIdOutputPort;
 
-public class ExcluirClientePeloIdUseCase {
+public class ExcluirClientePeloIdUseCase implements ExcluirClientePeloIdOutputPort {
 
     private final BuscarClientePeloIdInputPort buscarClientePeloIdInputPort;
 
@@ -17,6 +17,7 @@ public class ExcluirClientePeloIdUseCase {
         this.excluirClientePeloIdOutputPort = excluirClientePeloIdOutputPort;
     }
 
+    @Override
     public void excluir(String id) {
         buscarClientePeloIdInputPort.buscar(id);
         excluirClientePeloIdOutputPort.excluir(id);
