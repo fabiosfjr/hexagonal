@@ -14,9 +14,11 @@ public class AtualizarClienteUseCase implements AtualizarClienteInputPort {
 
     private final AtualizarClienteOutputPort atualizarClienteOutputPort;
 
-    public AtualizarClienteUseCase(BuscarClientePeloIdInputPort buscarClientePeloIdInputPort,
-                                   BuscarEnderecoPeloCepOutputPort buscarEnderecoPeloCepOutputPort,
-                                   AtualizarClienteOutputPort atualizarClienteOutputPort) {
+    public AtualizarClienteUseCase(
+            BuscarClientePeloIdInputPort buscarClientePeloIdInputPort,
+            BuscarEnderecoPeloCepOutputPort buscarEnderecoPeloCepOutputPort,
+            AtualizarClienteOutputPort atualizarClienteOutputPort
+    ) {
         this.buscarClientePeloIdInputPort = buscarClientePeloIdInputPort;
         this.buscarEnderecoPeloCepOutputPort = buscarEnderecoPeloCepOutputPort;
         this.atualizarClienteOutputPort = atualizarClienteOutputPort;

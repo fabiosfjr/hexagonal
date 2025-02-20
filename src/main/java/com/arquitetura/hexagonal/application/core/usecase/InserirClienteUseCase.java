@@ -10,8 +10,10 @@ public class InserirClienteUseCase implements InserirClienteInputPort {
     private final BuscarEnderecoPeloCepOutputPort buscarEnderecoPeloCepOutputPort;
     private final InserirClienteOutputPort insertCustomerOutputPort;
 
-    public InserirClienteUseCase(BuscarEnderecoPeloCepOutputPort buscarEnderecoPeloCepOutputPort,
-                                 InserirClienteOutputPort insertCustomerOutputPort) {
+    public InserirClienteUseCase(
+            BuscarEnderecoPeloCepOutputPort buscarEnderecoPeloCepOutputPort,
+            InserirClienteOutputPort insertCustomerOutputPort
+    ) {
         this.buscarEnderecoPeloCepOutputPort = buscarEnderecoPeloCepOutputPort;
         this.insertCustomerOutputPort = insertCustomerOutputPort;
     }
