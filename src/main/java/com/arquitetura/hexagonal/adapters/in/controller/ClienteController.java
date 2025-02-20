@@ -3,7 +3,10 @@ package com.arquitetura.hexagonal.adapters.in.controller;
 import com.arquitetura.hexagonal.adapters.in.controller.mapper.ClienteMapper;
 import com.arquitetura.hexagonal.adapters.in.controller.request.ClienteRequest;
 import com.arquitetura.hexagonal.adapters.in.controller.response.ClienteResponse;
+import com.arquitetura.hexagonal.application.core.domain.Cliente;
+import com.arquitetura.hexagonal.application.ports.in.AtualizarClienteInputPort;
 import com.arquitetura.hexagonal.application.ports.in.BuscarClientePeloIdInputPort;
+import com.arquitetura.hexagonal.application.ports.in.ExluirClientePeloIdInputPort;
 import com.arquitetura.hexagonal.application.ports.in.InserirClienteInputPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,12 @@ public class ClienteController {
     @Autowired
     private BuscarClientePeloIdInputPort buscarClientePeloIdInputPort;
 
+    @Autowired
+    private AtualizarClienteInputPort atualizarClienteInputPort;
+
+    @Autowired
+    private ExluirClientePeloIdInputPort exluirClientePeloIdInputPort;
+
     @PostMapping
     public ResponseEntity<Void> inserir(@Valid @RequestBody ClienteRequest clienteRequest) {
         var cliente = clienteMapper.toCliente(clienteRequest);
@@ -36,5 +45,19 @@ public class ClienteController {
         var cliente = buscarClientePeloIdInputPort.buscar(id);
         var clienteResponse = clienteMapper.toClienteResponse(cliente);
         return ResponseEntity.ok().body(clienteResponse);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizar(@PathVariable final String id, @Valid @RequestBody ClienteRequest clienteRequest) {
+        Cliente cliente = clienteMapper.toCliente(clienteRequest);
+        cliente.setId(id);
+        atualizarClienteInputPort.atualizar(cliente, clienteRequest.getCep());
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable final String id) {
+        exluirClientePeloIdInputPort.excluir(id);
+        return ResponseEntity.noContent().build();
     }
 }
