@@ -29,6 +29,7 @@ public class KafkaProducerConfig {
 
         return new DefaultKafkaProducerFactory<>(configProps);
     }
+
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());

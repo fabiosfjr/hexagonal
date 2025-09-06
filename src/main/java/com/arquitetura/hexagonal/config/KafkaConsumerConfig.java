@@ -21,6 +21,7 @@ import static org.apache.kafka.clients.consumer.ConsumerConfig.VALUE_DESERIALIZE
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
+
     @Bean
     public ConsumerFactory<String, MensagemCliente> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
@@ -37,9 +38,9 @@ public class KafkaConsumerConfig {
                 new JsonDeserializer<>(MensagemCliente.class)
         );
     }
+
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, MensagemCliente>
-    kafkaListenerContainerFactory() {
+    public ConcurrentKafkaListenerContainerFactory<String, MensagemCliente> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, MensagemCliente> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
