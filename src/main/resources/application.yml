@@ -5,4 +5,5 @@ client:
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017//hexagonal
+      host: localhost
+      port: 27017
